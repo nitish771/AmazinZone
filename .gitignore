@@ -1,0 +1,13 @@
+__pycache__
+.env
+temp-*.*
+temo.*
+cart.html
+dashboard.html
+order_complete.html
+place-order.html
+product-detail.html
+register.html
+search-result.html
+signin.html
+store.html
