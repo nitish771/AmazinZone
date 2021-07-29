@@ -5,5 +5,7 @@ from . import views
 app_name = 'store'
 
 urlpatterns = [
-	path('', views.Store.as_view(), name='home'),
+	path('', views.store, name='home'),
+	path('category/<slug:category_slug>', views.category, name='category'),
+	path('category/all/', views.category_all, name='category_all'),
 ]

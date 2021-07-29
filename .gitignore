@@ -1,4 +1,4 @@
-__pycache__
+__pycache__/
 .env
 temp-*.*
 temo.*
@@ -10,3 +10,4 @@ product-detail.html
 register.html
 search-result.html
 signin.html
+CHANGELOG
