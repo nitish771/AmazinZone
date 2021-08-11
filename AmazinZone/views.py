@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
+from store.models import Product, Category
 
-class homepage(TemplateView):
-	template_name = 'index.html'
+
+def homepage(request):
+	products = Product.objects.all()
+	return render(request, 'index.html', {'homepage_products': products})

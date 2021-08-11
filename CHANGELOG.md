@@ -9,3 +9,9 @@
 	* move product_details.html and checkout.html to products
 	* view product image in different tab
 	* 
+
+# Wednesday 11 Aug 2021 13:16:11 PM
+	* product-detail page from homepage
+	* show guest user if not signed in
+	* product items in homepage
+	

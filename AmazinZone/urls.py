@@ -9,8 +9,7 @@ app_name = 'amazinzone'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.homepage.as_view(), name="homepage"),
+    path('', views.homepage, name="homepage"),
     path('store/', include('store.urls'), name="store"),
     path('products/', include('products.urls'), name="products"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

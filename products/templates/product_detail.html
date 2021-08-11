@@ -20,7 +20,7 @@
                     <form action="#" method="POST">
                         {% csrf_token %}
                         <article class="content-body">
-                            <h2 class="title">{{ product_details.title }}</h2>
+                            <h2 class="title">{{ product_details.title | capfirst }}</h2>
                             <div class="mb-3">
                             <var class="price h4"><p>$ {{ product_details.price }}</p></var>
                             </div>
@@ -41,7 +41,7 @@
                             <div class="row">
                                 <div class="item-option-select">
                                     <h6>Choose Color</h6>
-                                    <select name="color" class="form-control" required>
+                                    <select name="color" class="form-control">
                                         <option value="" disabled selected>Select</option>
                                         {% for i in product_details.variation_set.colors %}
                                         <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
@@ -61,10 +61,11 @@
                                 </div>
                             </div>
                             <hr>
-                            {% if product_details.stock <= 0 %} <h5 class="text-danger">Out of Stock</h5>
-                                {% else %}
-                                <button type="submit" class="btn  btn-primary"> <span class="text">Add to Cart</span> <i class="fas fa-shopping-cart"></i> </button>
-                                {% endif %}
+                            {% if product_details.quantity < 1 %}
+                                <label style="background-color: #fcc; border: 2px solid #888; border-radius: 2%; padding: 10px;" ><h5 class="text-danger">Out of Stock</h5></label>
+                            {% else %}
+                                <button type="submit" class="btn btn-primary"> <span class="text">Add to Cart</span> <i class="fas fa-shopping-cart"></i> </button>
+                            {% endif %}
                         </article> <!-- product-info-aside .// -->
                     </form>
                 </main> <!-- col.// -->
@@ -73,6 +74,7 @@
         <!-- ============================ COMPONENT 1 END .// ================================= -->
         <br>
 
+        <!--
         {# Review #}
         <div class="row">
             <div class="col-md-9">
@@ -80,7 +82,7 @@
                     {% csrf_token %}
                     <h5>Write Your Review</h5>
                     <div>
-                        <!-- Rating stars -->
+                       
                         <label>How do you rate this product?</label>
                         <br>
                         <div class="rate">
@@ -144,7 +146,7 @@
                                 </span>
                             </div>
                         </div>
-                    </div> <!-- icontext.// -->
+                    </div>
                     <div class="mt-3">
                         <h6>{{review.subject}}</h6>
                         <p>
@@ -153,8 +155,9 @@
                     </div>
                 </article>
                 {% endfor %}
-            </div> <!-- col.// -->
-        </div> <!-- row.// -->
+            </div>
+        </div>
+        -->
     </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
