@@ -10,8 +10,8 @@
 	* view product image in different tab
 	* 
 
-# Wednesday 11 Aug 2021 13:16:11 PM
+# Friday 13 August 2021
 	* product-detail page from homepage
 	* show guest user if not signed in
 	* product items in homepage
-	
+	* change email type of accounts models from charfield to emailfield

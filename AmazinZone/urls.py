@@ -10,6 +10,7 @@ app_name = 'amazinzone'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name="homepage"),
+    path('accounts/', include('accounts.urls'), name="accounts"),
     path('store/', include('store.urls'), name="store"),
     path('products/', include('products.urls'), name="products"),
     path('cart/', include('cart.urls'), name="cart"),

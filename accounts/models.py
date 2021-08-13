@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class AccountManager(BaseUserManager):
-	def create_user(self, first_name, last_name, email, password=None):
+	def create_user(self, first_name, last_name, email, phone, password):
 		if not email:
 			raise ValueError('Email can\'t be empty')
 		if not first_name:
@@ -14,10 +14,14 @@ class AccountManager(BaseUserManager):
 
 		user = self.model(
 			first_name=first_name, last_name=last_name,
-			username=username, email=email)
+			username=username, email=email, phone=phone)
+
 		if password is not None:
 			user.set_password(password)
-		uesr.save(using=self._db)
+		else:
+			raise ValueError('Password Cannot be None')
+
+		user.save(using=self._db)
 		return user
 
 	def create_superuser(self, first_name, last_name, email, password=None):
@@ -47,7 +51,7 @@ class Account(AbstractBaseUser):
 	# Basic info
 	first_name = models.CharField(max_length=50)
 	last_name = models.CharField(max_length=50)
-	email = models.CharField(max_length=50, unique=True)  # username field
+	email = models.EmailField(max_length=50, unique=True)  # username field
 	username = models.CharField(max_length=12, unique=True)
 	phone = models.CharField(max_length=12, null=True)
 	

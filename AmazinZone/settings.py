@@ -1,6 +1,8 @@
 from pathlib import Path
 from dotenv import load_dotenv
-from os import path
+from os import path, environ
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,9 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%7ylx2o2zb1$!x*84rh-xgkgzaj4r561l_db6z3(hl++%3$(9%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+IS_DEV = False if environ.get('IS_DEVELOPMENT')=='False' else True
+DEBUG = IS_DEV
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -123,3 +126,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.Account'
+
+
+# Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+} 
+
+# SMTP CONFIG
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = environ.get('EMAIL_USER')  # Your email here or add EMAIL_USER in you environt
+EMAIL_HOST_PASSWORD = environ.get('EMAIL_PASSWORD')  # Same with password
+print(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, type(EMAIL_HOST_PASSWORD))
+EMAIL_USE_TLS = True
