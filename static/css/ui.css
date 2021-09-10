@@ -1412,4 +1412,13 @@ a[class*=card]:hover .title {
   display: block;
 }
 
+.item-quantity{
+  width: 80px !important;
+  margin-right: 15px;
+}
+
+.cart-item-quantity{
+  min-width: 50px;
+  max-width: 100px;
+}
 /*# sourceMappingURL=ui.css.map */
