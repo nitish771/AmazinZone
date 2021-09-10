@@ -17,7 +17,7 @@
                     </article> <!-- gallery-wrap .end// -->
                 </aside>
                 <main class="col-md-6 border-left">
-                    <form action="{% url 'cart:add_to_cart' product_details.slug %}" method="POST">
+                    <form action="{% url 'cart:add_to_cart' product_details.slug %}" method="GET">
                         {% csrf_token %}
                         <article class="content-body">
                             <h2 class="title">{{ product_details.title | capfirst }}</h2>
@@ -26,7 +26,7 @@
                             </div>
 
                             <p>{{product_details.details}}</p>
-                            
+                           <!-- 
                             <div class="rating-star">
                                 <span>
                                     <i class="fa fa-star{% if product_details.averageReview < 0.5 %}-o{% elif product_details.averageReview >= 0.5 and product_details.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
@@ -38,12 +38,13 @@
                                 </span>
                             </div>
                             <hr>
+                            -->
+                            {# product variations details #}
                             <div class="row">
                                 <div class="item-option-select">
-                                    <h6>Choose Color</h6>
+                                    <h6>Color</h6>
                                     <select name="color" class="form-control">
-                                        <option value="" disabled selected>Select</option>
-                                        {% for i in product_details.variation_set.colors %}
+                                        {% for i in product_details.variation_set.color %}  {# color is function name in manager #}
                                         <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
                                         {% endfor %}
                                     </select>
@@ -53,18 +54,24 @@
                                 <div class="item-option-select">
                                     <h6>Select Size</h6>
                                     <select name="size" class="form-control">
-                                        <option value="" disabled selected>Select</option>
-                                        {% for i in product_details.variation_set.sizes %}
+                                        {% for i in product_details.variation_set.size %}
                                         <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="item-option-select">
+                                    <h6 id="quantity">Quantity</h6>
+                                    <input type="number" id="number" for="quantity" class="form-control item-quantity" name="quantity" min="1" max="10000" value="1">
+                                </div>
+                            </div>
                             <hr>
+
                             {% if product_details.quantity < 1 %}
                                 <label style="background-color: #fcc; border: 2px solid #888; border-radius: 2%; padding: 10px;" ><h5 class="text-danger">Out of Stock</h5></label>
                             {% else %}
-                                <button type="submit" class="btn btn-primary"> <span class="text">Add to Cart</span> <i class="fas fa-shopping-cart"></i> </button>
+                                <button type="submit" class="btn btn-primary"><span class="text"> Add to Cart</span> <i class="fas fa-shopping-cart"></i></button>
                             {% endif %}
                         </article> <!-- product-info-aside .// -->
                     </form>
@@ -159,6 +166,7 @@
         </div>
         -->
     </div> <!-- container .//  -->
+{% include 'includes/footer.html' %}
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 {% endblock %}
