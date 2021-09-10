@@ -57,6 +57,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.grand_total',
+                'store.context_processors.get_categories',
             ],
         },
     },
@@ -123,9 +124,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # size of each model field
 
-AUTH_USER_MODEL = 'accounts.Account'
+AUTH_USER_MODEL = 'accounts.Account'  # custom user model(where pk is email)
 
 
 # Messages
@@ -139,5 +140,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = environ.get('EMAIL_USER')  # Your email here or add EMAIL_USER in you environt
 EMAIL_HOST_PASSWORD = environ.get('EMAIL_PASSWORD')  # Same with password
-print(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, type(EMAIL_HOST_PASSWORD))
 EMAIL_USE_TLS = True
