@@ -3,27 +3,6 @@
 
 {% block content %}
 <header class="section-header">
-    <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTop4">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link"> English </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link"> USD </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
-                    <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
-                </ul> <!-- list-inline //  -->
-            </div> <!-- navbar-collapse .// -->
-        </div> <!-- container //  -->
-    </nav>
     <section class="header-main border-bottom">
         <div class="container">
             <div class="row align-items-center">
@@ -38,12 +17,10 @@
                             <i class="fa fa-bars"></i> All category
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
-                            <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
-                            <a class="dropdown-item" href="#">Auto / Transportation</a>
-                            <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
-                            <a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
-                            <a class="dropdown-item" href="#">Beauty & Personal Care / Health </a>
+                            {% for category in product_categories %}
+                                <a class="dropdown-item" href="#">{{category.title|capfirst}}</a>
+                            {% endfor %}
+                            
                         </div>
                     </div> <!-- category-wrap.// -->
                 </div> <!-- col.// -->
