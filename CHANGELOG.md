@@ -15,3 +15,12 @@
 	* show guest user if not signed in
 	* product items in homepage
 	* change email type of accounts models from charfield to emailfield
+
+# Friday 10 September 2021 11:21:43 AM
+	* Add my Email in navbar
+	* add dummy tel no.
+	* update fontawesome from 5 to 5.15
+	* change footer style and info
+	* fix product categories in homepage
+	* prepopulate fields for product slug when adding new product
+	* add variation for product
