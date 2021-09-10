@@ -44,17 +44,24 @@ def get_cart_variables(request, product_slug):
     return var_dict
 
 
-def add(request, product_slug, num=1):
+def add(request, product_slug):
     variables = get_cart_variables(request, product_slug)
     product = variables.get('product')
     current_user = variables.get('current_user')
     cart = variables.get('cart')
 
+    color = request.GET.get('color')
+    size = request.GET.get('size')
+    quantity = request.GET.get('quantity')
+
     if current_user.is_authenticated:
         # if user logged in, increase or add in cart
         try:
             cart_item = CartItem.objects.get(product=product)
-            cart_item.quantity += num
+            if quantity:
+                cart_item.quantity += int(quantity)
+            else:
+                cart_item.quantity += 1
             cart_item.save()
             _update_cart_items_count(request)
         except CartItem.DoesNotExist:
